@@ -12,34 +12,9 @@ Instead of collecting additional satellite imagery, the project fine-tunes **Ins
 
 This work demonstrates how diffusion-based image editing can be applied as an effective data augmentation strategy for remote sensing applications.
 
----
-
-
-## Highlights
-
-- Fine-tuned **InstructPix2Pix** for remote sensing image editing
-- Generated over **5,230** edited remote sensing images
-- Expanded the **Levir-MCI** dataset
-- Improved dataset diversity for rare change categories
-- Evaluated the augmented dataset using **RSICCformer**
-- Demonstrated the effectiveness of diffusion-based data augmentation for remote sensing applications
 
 ---
 
-## Motivation
-
-Remote sensing change captioning aims to automatically describe semantic changes between two images captured at different times.
-
-However, existing datasets suffer from several limitations:
-
-- Long-tailed distribution of change categories
-- Insufficient samples for rare changes
-- Expensive manual annotation
-- Difficulty collecting additional satellite imagery
-
-This project addresses these challenges by generating realistic edited remote sensing images using diffusion models, reducing the need for manual data collection while enriching the training dataset.
-
----
 
 ## Dataset
 
@@ -255,31 +230,6 @@ python generate_dataset.py
 python evaluate.py
 ```
 
----
-
-## Technologies
-
-- Python
-- PyTorch
-- Hugging Face Diffusers
-- Stable Diffusion
-- InstructPix2Pix
-- Transformers
-- OpenCV
-- NumPy
-- CUDA
-
----
-
-## Future Work
-
-Possible future improvements include:
-
-- Higher-resolution remote sensing image editing
-- Multi-object editing
-- Automatic editing instruction generation
-- Generalization to additional remote sensing datasets
-- Integration with larger vision-language models
 
 ---
 
