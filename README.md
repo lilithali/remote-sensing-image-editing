@@ -1,70 +1,87 @@
 # Remote Sensing Image Editing Based on Diffusion Models
 
-Image editing for dual-temporal remote sensing imagery using diffusion models to generate balanced datasets for change captioning.
+Image editing for dual-temporal remote sensing imagery using diffusion models to generate balanced datasets for remote sensing change captioning.
 
 ---
 
 ## Overview
 
-This project investigates image editing for dual-temporal remote sensing imagery using diffusion models. Existing remote sensing change captioning datasets suffer from severe data imbalance, where some change types (e.g., buildings) appear much more frequently than others (e.g., lakes, parking lots, demolished structures).
+This project investigates remote sensing image editing using diffusion models to address the long-tailed distribution of change categories in remote sensing change captioning datasets.
 
-To address this issue, this project fine-tunes **InstructPix2Pix** for remote sensing image editing. Given a pre-change image and a natural language editing instruction, the model generates a realistic post-change image while preserving unchanged regions.
+Instead of collecting additional satellite imagery, the project fine-tunes **InstructPix2Pix** to edit remote sensing images according to natural language instructions. The generated image pairs are then incorporated into an expanded training dataset to improve the performance of downstream change captioning models.
 
-The generated images are then used to construct an augmented dataset, which is further applied to improve the performance of remote sensing change captioning models.
+This work demonstrates how diffusion-based image editing can be applied as an effective data augmentation strategy for remote sensing applications.
+
+---
+
+## Project Status
+
+- ✅ Remote sensing image editing pipeline implemented
+- ✅ InstructPix2Pix fine-tuning completed
+- ✅ Dataset augmentation completed
+- ✅ Change captioning evaluation completed
+- 📄 Research project completed
 
 ---
 
 ## Highlights
 
 - Fine-tuned **InstructPix2Pix** for remote sensing image editing
-- Generated over **5,000** new remote sensing images
+- Generated over **5,230** edited remote sensing images
 - Expanded the **Levir-MCI** dataset
-- Reduced dataset imbalance for rare change categories
-- Improved downstream **change captioning** performance using RSICCformer
+- Improved dataset diversity for rare change categories
+- Evaluated the augmented dataset using **RSICCformer**
+- Demonstrated the effectiveness of diffusion-based data augmentation for remote sensing applications
 
 ---
 
 ## Motivation
 
-Remote sensing change captioning relies on paired images captured at different times.
+Remote sensing change captioning aims to automatically describe semantic changes between two images captured at different times.
 
-However, existing datasets exhibit several limitations:
+However, existing datasets suffer from several limitations:
 
 - Long-tailed distribution of change categories
-- Limited number of rare events
+- Insufficient samples for rare changes
 - Expensive manual annotation
-- Difficulty collecting new satellite imagery
+- Difficulty collecting additional satellite imagery
 
-Instead of collecting additional satellite images, this project generates realistic edited images using diffusion models to enrich existing datasets.
+This project addresses these challenges by generating realistic edited remote sensing images using diffusion models, reducing the need for manual data collection while enriching the training dataset.
 
 ---
 
 ## Dataset
 
-### Levir-MCI
+This project uses the **Levir-MCI** remote sensing change captioning dataset.
 
-The project uses the **Levir-MCI** dataset.
-
-Dataset characteristics:
+### Dataset Statistics
 
 - 10,077 image pairs
 - 256 × 256 RGB images
 - Five captions for each image pair
 - Dual-temporal remote sensing imagery
 
-For dataset augmentation:
+### Dataset Augmentation
 
-- 1,046 original images were selected
+For image editing experiments:
+
+- 1,046 original image pairs were selected
 - Five editing instructions were designed for each image
 - A total of **5,230 edited remote sensing images** were generated
+
+### Dataset Availability
+
+The **Levir-MCI** dataset is **not included** in this repository.
+
+Please obtain the dataset from its official source and place it in the appropriate directory before training or evaluation.
 
 ---
 
 ## Methodology
 
-The overall pipeline is shown below.
+The overall workflow is illustrated below.
 
-```
+```text
 Original Image
         │
         ▼
@@ -86,9 +103,19 @@ RSICCformer
 Generated Change Caption
 ```
 
+The project consists of two stages:
+
+### Stage 1 — Remote Sensing Image Editing
+
+The image editing model generates realistic post-change remote sensing images based on textual editing instructions while preserving the unchanged regions of the scene.
+
+### Stage 2 — Change Captioning
+
+The generated image pairs are incorporated into the training dataset and evaluated using **RSICCformer** to assess the impact of dataset augmentation on remote sensing change captioning.
+
 ---
 
-## Model
+## Models
 
 ### Image Editing
 
@@ -105,7 +132,7 @@ Generated Change Caption
 
 ## Image Editing Examples
 
-The model can generate various realistic changes, including
+The proposed method can generate various realistic scene changes, including:
 
 - Building construction
 - Building removal
@@ -122,69 +149,96 @@ while preserving the remaining regions of the original image.
 
 ### Qualitative Results
 
-The generated images successfully follow textual editing instructions while maintaining the overall scene consistency.
+The generated images successfully follow textual editing instructions while maintaining the overall visual consistency of the remote sensing scene.
 
-Example editing tasks include:
+Typical editing instructions include:
 
-- Add a lake
 - Build several houses
+- Remove existing buildings
+- Add a lake
 - Construct a parking lot
-- Extend an existing building
+- Expand roads
 - Remove vegetation
+
+Example results are shown below.
+
+<p align="center">
+<img src="images/editing_examples.png" width="900">
+</p>
 
 ---
 
 ### Quantitative Results
 
-The expanded dataset improves the downstream change captioning model.
+The augmented dataset is evaluated using **RSICCformer**.
 
-Evaluation metrics include
+Performance is measured using standard captioning metrics:
 
 - BLEU
 - METEOR
-- ROUGE
+- ROUGE-L
 - CIDEr
 
-The generated dataset demonstrates improved caption quality compared with training using the original dataset alone.
+Experimental results demonstrate that the generated dataset improves change captioning performance compared with training using the original dataset alone.
 
 ---
 
 ## Repository Structure
 
-```
+```text
 remote-sensing-image-editing/
-
-│
-├── dataset/                 # Dataset preprocessing
-│
-├── checkpoints/             # Trained models
-│
-├── scripts/                 # Training and inference scripts
 │
 ├── images/                  # Figures used in README
-│
-├── results/                 # Generated samples
-│
+├── notebooks/               # Jupyter notebooks
+├── scripts/                 # Training and inference scripts
+├── src/                     # Core implementation
 ├── README.md
-│
-└── requirements.txt
+├── requirements.txt
+└── LICENSE
 ```
+
+> **Note:**  
+> The original dataset and trained checkpoints are **not included** in this repository due to licensing restrictions and file size limitations.
 
 ---
 
 ## Installation
 
+Clone the repository:
+
 ```bash
-git clone https://github.com/yourname/remote-sensing-image-editing.git
+git clone https://github.com/yourusername/remote-sensing-image-editing.git
 
 cd remote-sensing-image-editing
+```
 
+Install dependencies:
+
+```bash
 pip install -r requirements.txt
 ```
 
 ---
 
+## Pre-trained Models
+
+The trained checkpoints are **not distributed** with this repository because:
+
+- The checkpoint files are several gigabytes in size.
+- They are derived from publicly available diffusion models with separate licenses.
+- This repository focuses on demonstrating the implementation and research methodology.
+
+Users should download the required pre-trained models (e.g., Stable Diffusion and InstructPix2Pix) from their official repositories.
+
+---
+
 ## Usage
+
+Before running the project:
+
+1. Download the Levir-MCI dataset.
+2. Download the required diffusion model checkpoints.
+3. Configure the dataset and checkpoint paths.
 
 ### Training
 
@@ -198,7 +252,7 @@ python train.py
 python inference.py
 ```
 
-### Generate Augmented Dataset
+### Dataset Augmentation
 
 ```bash
 python generate_dataset.py
@@ -216,22 +270,23 @@ python evaluate.py
 
 - Python
 - PyTorch
-- HuggingFace Diffusers
+- Hugging Face Diffusers
 - Stable Diffusion
 - InstructPix2Pix
-- OpenCV
 - Transformers
+- OpenCV
+- NumPy
 - CUDA
 
 ---
 
 ## Future Work
 
-Possible future improvements include
+Possible future improvements include:
 
-- Higher-resolution remote sensing editing
+- Higher-resolution remote sensing image editing
 - Multi-object editing
-- Automatic instruction generation
+- Automatic editing instruction generation
 - Generalization to additional remote sensing datasets
 - Integration with larger vision-language models
 
@@ -239,16 +294,22 @@ Possible future improvements include
 
 ## Acknowledgements
 
-This project is based on the following works:
+This project builds upon several excellent open-source projects and publicly available datasets:
 
-- InstructPix2Pix
 - Stable Diffusion
+- InstructPix2Pix
+- Hugging Face Diffusers
 - Levir-MCI Dataset
 - RSICCformer
+
+We sincerely thank the authors for making their work publicly available.
 
 ---
 
 ## License
 
-This repository is intended for academic and research purposes.
+This repository is intended for **academic and research purposes**.
 
+Only the implementation developed for this project and demonstration materials are included.
+
+The original **Levir-MCI** dataset and pre-trained model checkpoints are **not redistributed**. Please obtain these resources from their respective official sources and comply with their licenses.
