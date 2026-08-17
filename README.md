@@ -136,16 +136,16 @@ while preserving the remaining regions of the original image.
 
 ### Quantitative Results
 
-The augmented dataset is evaluated using **RSICCformer**.
 
-Performance is measured using standard captioning metrics:
+The augmented dataset was evaluated using RSICCformer with standard change captioning metrics.
 
-- BLEU
-- METEOR
-- ROUGE-L
-- CIDEr
+| Model | BLEU-1 | BLEU-2 | BLEU-3 | BLEU-4 | METEOR | ROUGE-L | CIDEr |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| RSICCformer | **0.77** | **0.67** | **0.60** | **0.53** | **0.36** | **0.68** | **1.17** |
+| MCCFormer-S | 0.74 | 0.63 | 0.55 | 0.49 | 0.34 | 0.64 | 1.04 |
+| MCCFormer-D | 0.74 | 0.63 | 0.55 | 0.50 | 0.34 | 0.63 | 1.04 |
 
-Experimental results demonstrate that the generated dataset improves change captioning performance compared with training using the original dataset alone.
+RSICCformer achieved the best performance across all reported metrics, indicating stronger semantic change understanding and higher-quality generated captions.
 
 ---
 
