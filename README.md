@@ -15,31 +15,33 @@ This work demonstrates how diffusion-based image editing can be applied as an ef
 
 ---
 
-
 ## Dataset
 
 This project uses the **Levir-MCI** remote sensing change captioning dataset.
 
 ### Dataset Statistics
 
-- 10,077 image pairs
+- 10,077 dual-temporal image pairs
 - 256 × 256 RGB images
-- Five captions for each image pair
-- Dual-temporal remote sensing imagery
+- Five reference captions for each original image pair
+- 5,038 changed image pairs
+- 5,039 unchanged image pairs
 
 ### Dataset Augmentation
 
-For image editing experiments:
+To reduce imbalance among different change categories:
 
-- 1,046 original image pairs were selected
-- Five editing instructions were designed for each image
-- A total of **5,230 edited remote sensing images** were generated
+- 1,046 source images were selected from the original dataset
+- Five editing instructions were prepared for each selected image
+- **5,230 new edited remote sensing images** were generated
+
+After integrating the generated data, the expanded dataset contained **15,307 image pairs**, including 10,268 changed pairs and 5,039 unchanged pairs.
 
 ### Dataset Availability
 
-The **Levir-MCI** dataset is **not included** in this repository.
+The Levir-MCI dataset is **not redistributed** in this repository.
 
-Please obtain the dataset from its official source and place it in the appropriate directory before training or evaluation.
+Users should obtain the dataset from its official source and configure the local dataset path before running the project.
 
 ---
 
@@ -145,7 +147,7 @@ The augmented dataset was evaluated using RSICCformer with standard change capti
 | MCCFormer-S | 0.74 | 0.63 | 0.55 | 0.49 | 0.34 | 0.64 | 1.04 |
 | MCCFormer-D | 0.74 | 0.63 | 0.55 | 0.50 | 0.34 | 0.63 | 1.04 |
 
-RSICCformer achieved the best performance across all reported metrics, indicating stronger semantic change understanding and higher-quality generated captions.
+The downstream RSICCformer model achieved strong performance across standard change-captioning metrics and outperformed the reported MCCFormer-S and MCCFormer-D baselines.
 
 ---
 
@@ -190,38 +192,49 @@ remote-sensing-image-editing/
 
 ## Installation
 
-Create the Conda environment:
+Clone the repository:
 
 ```bash
+git clone https://github.com/lilithali/remote-sensing-image-editing.git
+cd remote-sensing-image-editing
 conda env create -f environment.yaml
 conda activate ip2p
 ---
 
 ## Pre-trained Models
 
-The trained checkpoints are **not distributed** with this repository because:
+Pre-trained and fine-tuned model checkpoints are **not included** in this repository.
 
-- The checkpoint files are several gigabytes in size.
-- They are derived from publicly available diffusion models with separate licenses.
-- This repository focuses on demonstrating the implementation and research methodology.
+This is because:
 
-Users should download the required pre-trained models (e.g., Stable Diffusion and InstructPix2Pix) from their official repositories.
+- Model checkpoints are large
+- The project builds upon externally released diffusion models
+- Those models are distributed under their own licenses and terms
 
+Utility scripts for obtaining required model resources are provided in:
+
+```text
+scripts/download_pretrained_sd.sh
+scripts/download_checkpoints.sh
 ---
 
 ## Usage
 
-Before running the project:
+The main implementation is organised under `src/`.
 
-1. Download the Levir-MCI dataset.
-2. Download the required diffusion model checkpoints.
-3. Configure the dataset and checkpoint paths.
+Key entry points include:
 
-### Training
+- `src/main.py` — main project entry point
+- `src/edit_cli.py` — instruction-guided image editing interface
+- `src/edit_dataset.py` — batch dataset editing and augmentation
+- `src/T2I.py` — text/image generation related utilities
+- `src/ClipI.py` — CLIP-related utilities
+- `src/convert.py` — data conversion utilities
 
-```bash
-python train.py
-```
+Model and training configuration is stored in:
+
+```text
+configs/train.yaml
 
 ### Generate Edited Images
 
