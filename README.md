@@ -240,8 +240,8 @@ We sincerely thank the authors for making their work publicly available.
 
 ## License
 
-This repository is intended for **academic and research purposes**.
+This project builds upon InstructPix2Pix and Stable Diffusion.
 
-Only the implementation developed for this project and demonstration materials are included.
+The original InstructPix2Pix license is included in this repository. Portions of the code and models are derived from the Stable Diffusion codebase and may be subject to additional licensing restrictions.
 
-The original **Levir-MCI** dataset and pre-trained model checkpoints are **not redistributed**. Please obtain these resources from their respective official sources and comply with their licenses.
+The Levir-MCI dataset and trained model checkpoints are not redistributed in this repository.
