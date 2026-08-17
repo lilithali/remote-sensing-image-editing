@@ -113,21 +113,24 @@ while preserving the remaining regions of the original image.
 
 ## Results
 
-<p align="center">
-  <img src="images/edit_example1.png" width="85%">
-</p>
-
-<p align="center">
-  <img src="images/edit_example2.png" width="85%">
-</p>
-
-<p align="center">
-  <img src="images/edit_example3.png" width="85%">
-</p>
-
-<p align="center">
-  <img src="images/edit_example4.png" width="85%">
-</p>
+<table>
+  <tr>
+    <td align="center" width="50%">
+      <img src="images/edit_example1.png" width="95%">
+    </td>
+    <td align="center" width="50%">
+      <img src="images/edit_example2.png" width="95%">
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%">
+      <img src="images/edit_example3.png" width="95%">
+    </td>
+    <td align="center" width="50%">
+      <img src="images/edit_example4.png" width="95%">
+    </td>
+  </tr>
+</table>
 
 ---
 
