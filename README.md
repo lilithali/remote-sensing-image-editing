@@ -14,15 +14,6 @@ This work demonstrates how diffusion-based image editing can be applied as an ef
 
 ---
 
-## Project Status
-
-- ✅ Remote sensing image editing pipeline implemented
-- ✅ InstructPix2Pix fine-tuning completed
-- ✅ Dataset augmentation completed
-- ✅ Change captioning evaluation completed
-- 📄 Research project completed
-
----
 
 ## Highlights
 
