@@ -115,21 +115,16 @@ while preserving the remaining regions of the original image.
 
 ### Qualitative Results
 
-The generated images successfully follow textual editing instructions while maintaining the overall visual consistency of the remote sensing scene.
-
-Typical editing instructions include:
-
-- Build several houses
-- Remove existing buildings
-- Add a lake
-- Construct a parking lot
-- Expand roads
-- Remove vegetation
-
-Example results are shown below.
+The model edits remote sensing images according to natural-language instructions while preserving unrelated regions of the original scene.
 
 <p align="center">
-<img src="images/editing_examples.png" width="900">
+  <img src="images/edit_example1.png" width="45%">
+  <img src="images/edit_example2.png" width="45%">
+</p>
+
+<p align="center">
+  <img src="images/edit_example3.png" width="45%">
+  <img src="images/edit_example4.png" width="45%">
 </p>
 
 ---
