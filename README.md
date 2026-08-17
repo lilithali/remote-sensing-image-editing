@@ -113,18 +113,20 @@ while preserving the remaining regions of the original image.
 
 ## Results
 
-### Qualitative Results
-
-The model edits remote sensing images according to natural-language instructions while preserving unrelated regions of the original scene.
-
 <p align="center">
-  <img src="images/edit_example1.png" width="45%">
-  <img src="images/edit_example2.png" width="45%">
+  <img src="images/edit_example1.png" width="85%">
 </p>
 
 <p align="center">
-  <img src="images/edit_example3.png" width="45%">
-  <img src="images/edit_example4.png" width="45%">
+  <img src="images/edit_example2.png" width="85%">
+</p>
+
+<p align="center">
+  <img src="images/edit_example3.png" width="85%">
+</p>
+
+<p align="center">
+  <img src="images/edit_example4.png" width="85%">
 </p>
 
 ---
