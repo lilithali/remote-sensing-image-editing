@@ -170,20 +170,11 @@ remote-sensing-image-editing/
 
 ## Installation
 
-Clone the repository:
+Create the Conda environment:
 
 ```bash
-git clone https://github.com/yourusername/remote-sensing-image-editing.git
-
-cd remote-sensing-image-editing
-```
-
-Install dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
+conda env create -f environment.yaml
+conda activate ip2p
 ---
 
 ## Pre-trained Models
